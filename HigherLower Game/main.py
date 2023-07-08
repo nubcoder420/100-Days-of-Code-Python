@@ -3,7 +3,7 @@ from game_data import data
 import random
 
 
-
+# data2 is for testing purposses
 data2 = [
     {
         'name': 'Instagram',
@@ -47,6 +47,5 @@ def second_item():
 
 print(second_item())
 
-result = first_item()
-follower_count_variable = result.split(":")[1].split(" ")[2].strip()
-print(follower_count_variable)
+
+# TODO: Access the follower_count and save it in a variable
