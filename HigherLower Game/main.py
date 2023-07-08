@@ -25,27 +25,26 @@ data2 = [
     },
 ]
 
-def first_item():
+
+def generate_item():
     value_of_key = data[random.randint(0, len(data) - 1)]
+    # value_of_key = data2[random.randint(0, len(data2) - 1)] # for tesssting code
     name = value_of_key['name']
     follower_count = value_of_key['follower_count']
     description = value_of_key['description']
     country = value_of_key['country']
 
-    return f"Compare A: {name}, a {description}, from {country}"
+    return name, follower_count, description, country
 
-print(first_item())
+name_a, follower_count_a, description_a, country_a = generate_item()
+name_b, follower_count_b, description_b, country_b = generate_item()
 
-def second_item():
-    value_of_key = data[random.randint(0, len(data) - 1)]
-    name = value_of_key['name']
-    follower_count = value_of_key['follower_count']
-    description = value_of_key['description']
-    country = value_of_key['country']
-
-    return f"Against B: {name}, a {description}, from {country}"
-
-print(second_item())
+print(f"Compare A: {name_a}, a {description_a}, from {country_a}")
+print(f"{follower_count_a}")
+print(f"Against B: {name_b}, a {description_b}, from {country_b}")
+print(f"{follower_count_b}")
 
 
-# TODO: Access the follower_count and save it in a variable
+
+# TODO: Access the follower_count and save it in a variable - DONE
+# TODO: Compare user input
