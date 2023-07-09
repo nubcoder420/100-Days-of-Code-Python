@@ -1,50 +1,82 @@
 from art import logo, vs
 from game_data import data
 import random
+import os
 
 
-# data2 is for testing purposses
-data2 = [
-    {
-        'name': 'Instagram',
-        'follower_count': 346,
-        'description': 'Social media platform',
-        'country': 'United States'
-    },
-    {
-        'name': 'Cristiano Ronaldo',
-        'follower_count': 215,
-        'description': 'Footballer',
-        'country': 'Portugal'
-    },
-    {
-        'name': 'Ariana Grande',
-        'follower_count': 183,
-        'description': 'Musician and actress',
-        'country': 'United States'
-    },
-]
+def clear_screen():
+    os.system('cls')
 
 
-def generate_item():
-    value_of_key = data[random.randint(0, len(data) - 1)]
-    # value_of_key = data2[random.randint(0, len(data2) - 1)] # for tesssting code
-    name = value_of_key['name']
-    follower_count = value_of_key['follower_count']
-    description = value_of_key['description']
-    country = value_of_key['country']
-
-    return name, follower_count, description, country
-
-name_a, follower_count_a, description_a, country_a = generate_item()
-name_b, follower_count_b, description_b, country_b = generate_item()
-
-print(f"Compare A: {name_a}, a {description_a}, from {country_a}")
-print(f"{follower_count_a}")
-print(f"Against B: {name_b}, a {description_b}, from {country_b}")
-print(f"{follower_count_b}")
+def generate_account():
+    account = random.choice(data)
+    return account
 
 
+def generate_item(from_generate_account):
+    
+    name = from_generate_account['name']
+    follower_count = from_generate_account['follower_count']
+    description = from_generate_account['description']
+    country = from_generate_account['country']
 
-# TODO: Access the follower_count and save it in a variable - DONE
-# TODO: Compare user input
+    return f"{name}, a {description}, from {country}."
+
+
+account_a = generate_account()
+follower_count_a = account_a['follower_count']
+
+account_b = generate_account()
+follower_count_b = account_b['follower_count']
+
+score = 0
+is_game_over = False
+
+while not is_game_over:
+
+    clear_screen()
+
+    print(logo)
+    print(f"Current score: {score}")
+
+    print()
+    print(f"Compare A: {generate_item(account_a)}")
+    print(f"HINT: Follower count: {follower_count_a}") # for testing code
+    print(vs)
+    print(f"Against B: {generate_item(account_b)}")
+    print(f"HINT: Follower count: {follower_count_b}") # for testing code
+    print()
+
+    guess = input("Who has more followers? Type 'A' or 'B': ").lower()
+
+    if guess == 'a':
+
+        if follower_count_a > follower_count_b:
+            score += 1
+            account_b = generate_account()
+            follower_count_b = account_b['follower_count']
+            clear_screen()
+        else:
+            clear_screen()
+            print(logo)
+            is_game_over = True
+            print(f"Your final score is {score}\nGame Over!")
+
+    elif guess == 'b':
+
+        if follower_count_a < follower_count_b:
+            score += 1
+            account_a = account_b
+            follower_count_a = follower_count_b
+            account_b = generate_account()
+            follower_count_b = account_b['follower_count']
+            clear_screen()
+
+        else:
+            clear_screen()
+            is_game_over = True
+            print(logo)
+            print(f"Your final score is {score}\nGame Over!")
+
+
+TODO : Improve the code
