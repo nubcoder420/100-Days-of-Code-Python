@@ -79,4 +79,4 @@ while not is_game_over:
             print(f"Your final score is {score}\nGame Over!")
 
 
-TODO : Improve the code
+# TODO : Improve the code
