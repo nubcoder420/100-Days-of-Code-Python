@@ -80,3 +80,4 @@ while not is_game_over:
 
 
 # TODO : Improve the code
+# TODO : Add Docstrings and comments
