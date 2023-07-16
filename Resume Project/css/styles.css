@@ -1,12 +1,13 @@
 body {
-    background: #FFF;
-    box-shadow: 6px 6px 20px 0px rgba(0, 0, 0, 0.10);
+    background-color: #FFF;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
 }
 
 p {
     color: #595959;
-    font-family: Montserrat;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -15,7 +16,6 @@ p {
 
 li {
     color: #595959;
-    font-family: Montserrat;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -33,9 +33,121 @@ h4 {
 
 .work-experience .subtitle {
     color: #FB6D3A;
-    font-family: Montserrat;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
+}
+
+.sidebar {
+    width: 370px;
+    height: 1319px;
+    /* flex-shrink: 0; */
+    background: #1E2939;
+    padding-top: 40px;
+    color: #FFFFFF;
+}
+
+.contacts p {
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 171.429% */
+    margin: 8px 0px 0px 0px;
+}
+
+.contacts h3 {
+    margin: 0px;
+}
+
+.contacts .mycontacts {
+    opacity: 0.5;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration-line: underline;
+}
+
+.sidebar > .content {
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+.sidebar > .tech-skills {
+    margin: 47px 0px 0px 0px;
+}
+
+.tech-skills h3 {
+    margin-top: 60px;
+}
+
+.tech-skills ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.tech-skills ul li::before {
+    content: "\2022";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FB6D3A;
+    display: inline-block;
+    width: 10px;
+}
+
+.tech-skills li {
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+}
+
+.tech-skills .my-tech-skills {
+    opacity: 0.75;
+}
+
+.sidebar > .soft-skills {
+    margin: 47px 0px 0px 0px;
+}
+
+.soft-skills h3 {
+    margin-top: 60px;
+}
+
+.soft-skills ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.soft-skills ul li::before {
+    content: "\2022";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FB6D3A;
+    display: inline-block;
+    width: 10px;
+}
+
+.soft-skills li {
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+}
+
+
+.soft-skills .my-soft-skills {
+    opacity: 0.75;
+}
+
+.main-content {
+    width: calc(100% - 370px);
+    margin-left: 80px;
 }
