@@ -33,59 +33,76 @@ resources = {
 }
 
 
-quarters = 0.25
-dimes = 0.1
-nickles = 0.05
-pennies = 0.01
+QUARTERS = 0.25
+DIMES = 0.1
+NICKLES = 0.05
+PENNIES = 0.01
 
 
-water = resources['water']
-milk = resources['milk']
-coffee = resources['coffee']
-
-
-def espresso():
-    espresso_water = MENU['espresso']['ingredients']['water']
-    espresso_coffee = MENU['espresso']['ingredients']['coffee']
-    espresso_cost = MENU['espresso']['cost']
-    return espresso_water, espresso_coffee, espresso_cost
-
-def latte():
-    latte_water = MENU['latte']['ingredients']['water']
-    latte_milk = MENU['latte']['ingredients']['milk']
-    latte_coffee = MENU['latte']['ingredients']['coffee']
-    latte_cost = (MENU['latte']['cost'])
-    return latte_water, latte_milk, latte_coffee, latte_cost
-
-
-def cappuccino():
-    cappuccino_water = MENU['cappuccino']['ingredients']['water']
-    cappuccino_milk = MENU['cappuccino']['ingredients']['milk']
-    cappuccino_coffee = MENU['cappuccino']['ingredients']['coffee']
-    cappuccino_cost = (MENU['cappuccino']['cost'])
-    return cappuccino_water, cappuccino_milk, cappuccino_coffee, cappuccino_cost
-
-espresso_water, espresso_coffee, espresso_cost = espresso()
-latte_water, latte_milk, latte_coffee, latte_cost = latte()
-cappuccino_water, cappuccino_milk, cappuccino_coffee, cappuccino_cost = cappuccino()
-
-def input_money():
+def insert_coin():
+    print('Please insert coins.')
     input_quarters = float(input('Enter how many quarters: '))
     input_dimes = float(input('Enter how many dimes: '))
     input_nickles = float(input('Enter how many nickles: '))
+    input_pennies = float(input('Enter how many pennies: '))
 
-# ordered_drink = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    total_coins = round((input_quarters * QUARTERS) + (input_dimes * DIMES) + (input_nickles * NICKLES) + (
+                input_pennies * PENNIES), 2)
 
+    return total_coins
 
-
-
-
-
-
-
-
-
+def order_complete(drink):
+    print(f'Here is ${change} in change.')
+    print(f'Here is your {ordered_drink}. Enjoy!')
 
 
+total_income = 0
 
+remaining_water = 0
+remaining_milk = 0
+remaining_coffee = 0
+
+have_resources = True
+
+while have_resources:
+
+    ordered_drink = input('What would you like? (espresso/latte/cappuccino):\n').lower()
+
+    total_money = insert_coin()  # total amount of coins inserted
+    change = total_money - MENU[ordered_drink]['cost']  # change if there is any
+
+    if ordered_drink == 'cappuccino':
+        order_complete(ordered_drink)
+        total_income += MENU['cappuccino']['cost']
+        remaining_water = resources['water'] - MENU['cappuccino']['ingredients']['water']
+        resources['water'] = remaining_water
+        remaining_coffee = resources['coffee'] - MENU['cappuccino']['ingredients']['coffee']
+        resources['coffee'] = remaining_coffee
+        remaining_milk = resources['milk'] - MENU['cappuccino']['ingredients']['milk']
+        resources['milk'] = remaining_milk
+
+    elif ordered_drink == 'latte':
+        order_complete(ordered_drink)
+        total_income += MENU['latte']['cost']
+        remaining_water = resources['water'] - MENU['latte']['ingredients']['water']
+        resources['water'] = remaining_water
+        remaining_coffee = resources['coffee'] - MENU['latte']['ingredients']['coffee']
+        resources['coffee'] = remaining_coffee
+        remaining_milk = resources['milk'] - MENU['latte']['ingredients']['milk']
+        resources['milk'] = remaining_milk
+
+    elif ordered_drink == 'espresso':
+        order_complete(ordered_drink)
+        total_income += MENU['espresso']['cost']
+        remaining_water = resources['water'] - MENU['espresso']['ingredients']['water']
+        resources['water'] = remaining_water
+        remaining_coffee = resources['coffee'] - MENU['espresso']['ingredients']['coffee']
+        resources['coffee'] = remaining_coffee
+
+    elif ordered_drink == 'report':
+        pass
+
+    print(total_income)
+    print(remaining_water)
+    print(remaining_coffee)
 
