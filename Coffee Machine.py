@@ -1,5 +1,3 @@
-
-
 MENU = {
     "espresso": {
         "ingredients": {
@@ -38,75 +36,55 @@ DIMES = 0.1
 NICKLES = 0.05
 PENNIES = 0.01
 
+earnings = 0
 
-def insert_coin():
+
+def machine_off():
+        exit()
+
+
+def print_report():
+    print('Current Resources:')
+    for item, amount in resources.items():
+        unit = 'ml' if item in ['water', 'milk'] else 'g'
+        print(f"{item.capitalize()}: {amount}{unit}")
+
+    print(f"Earnings: ${earnings:.2f}")
+
+
+def input_coins(drink):
     print('Please insert coins.')
-    input_quarters = float(input('Enter how many quarters: '))
-    input_dimes = float(input('Enter how many dimes: '))
-    input_nickles = float(input('Enter how many nickles: '))
-    input_pennies = float(input('Enter how many pennies: '))
 
-    total_coins = round((input_quarters * QUARTERS) + (input_dimes * DIMES) + (input_nickles * NICKLES) + (
-                input_pennies * PENNIES), 2)
+    user_quarters = int(input('How many quarters?: '))
+    user_dimes = int(input('How many dimes?: '))
+    user_nickels = int(input('How many nickles?: '))
+    user_pennies = int(input('How many pennies?: '))
 
-    return total_coins
+    total_input_coins = (user_quarters * QUARTERS) + (user_dimes * DIMES) + (user_nickels * NICKLES) + (user_pennies * PENNIES)
 
-def order_complete(drink):
-    print(f'Here is ${change} in change.')
-    print(f'Here is your {ordered_drink}. Enjoy!')
+    change = total_input_coins - (MENU[drink]['cost'])
+
+    print(f"Here is ${round(change, 2)} in change.")
+    print(f"Here is your {drink}. Enjoy!")
 
 
-total_income = 0
+def check_resources(drink):
+     ingredients = MENU[drink]['ingredients']
+     for item, amount in ingredients.items():
+          resources[item] -= amount
 
-remaining_water = 0
-remaining_milk = 0
-remaining_coffee = 0
 
-have_resources = True
-
-while have_resources:
+while True:
 
     ordered_drink = input('What would you like? (espresso/latte/cappuccino):\n').lower()
 
     if ordered_drink == 'off':
-        exit()
+        machine_off()
 
     elif ordered_drink == 'report':
-        pass
+        print_report()
 
-    total_money = insert_coin()  # total amount of coins inserted
-    change = total_money - MENU[ordered_drink]['cost']  # change if there is any
-
-    if ordered_drink == 'cappuccino':
-        order_complete(ordered_drink)
-        total_income += MENU['cappuccino']['cost']
-        remaining_water = resources['water'] - MENU['cappuccino']['ingredients']['water']
-        resources['water'] = remaining_water
-        remaining_coffee = resources['coffee'] - MENU['cappuccino']['ingredients']['coffee']
-        resources['coffee'] = remaining_coffee
-        remaining_milk = resources['milk'] - MENU['cappuccino']['ingredients']['milk']
-        resources['milk'] = remaining_milk
-
-    elif ordered_drink == 'latte':
-        order_complete(ordered_drink)
-        total_income += MENU['latte']['cost']
-        remaining_water = resources['water'] - MENU['latte']['ingredients']['water']
-        resources['water'] = remaining_water
-        remaining_coffee = resources['coffee'] - MENU['latte']['ingredients']['coffee']
-        resources['coffee'] = remaining_coffee
-        remaining_milk = resources['milk'] - MENU['latte']['ingredients']['milk']
-        resources['milk'] = remaining_milk
-
-    elif ordered_drink == 'espresso':
-        order_complete(ordered_drink)
-        total_income += MENU['espresso']['cost']
-        remaining_water = resources['water'] - MENU['espresso']['ingredients']['water']
-        resources['water'] = remaining_water
-        remaining_coffee = resources['coffee'] - MENU['espresso']['ingredients']['coffee']
-        resources['coffee'] = remaining_coffee
-
-
-    print(total_income)
-    print(remaining_water)
-    print(remaining_coffee)
-
+    elif ordered_drink == 'espresso' or ordered_drink == 'latte' or ordered_drink == 'cappuccino':
+        input_coins(ordered_drink)
+        earnings += MENU[ordered_drink]['cost']
+        check_resources(ordered_drink)
