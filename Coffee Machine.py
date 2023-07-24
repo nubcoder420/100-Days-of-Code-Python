@@ -106,3 +106,6 @@ while True:
 
     else:
          print('Invalid input. Try again.')
+
+
+# TODO: Refund the money if user inserted insufficient amount of coins
