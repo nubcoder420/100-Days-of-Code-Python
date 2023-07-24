@@ -52,6 +52,18 @@ def print_report():
     print(f"Earnings: ${earnings:.2f}")
 
 
+def check_resources(drink):
+    ingredients = MENU[drink]['ingredients']
+    for item, amount in ingredients.items():
+        if resources[item] < amount:
+            print(f"Sorry, not enough {item} to make {drink}.")
+            return False
+        else:
+            resources[item] -= amount
+    return True
+
+
+
 def input_coins(drink):
     print('Please insert coins.')
 
@@ -68,11 +80,6 @@ def input_coins(drink):
     print(f"Here is your {drink}. Enjoy!")
 
 
-def check_resources(drink):
-     ingredients = MENU[drink]['ingredients']
-     for item, amount in ingredients.items():
-          resources[item] -= amount
-
 
 while True:
 
@@ -85,6 +92,9 @@ while True:
         print_report()
 
     elif ordered_drink == 'espresso' or ordered_drink == 'latte' or ordered_drink == 'cappuccino':
-        input_coins(ordered_drink)
-        earnings += MENU[ordered_drink]['cost']
-        check_resources(ordered_drink)
+        if check_resources(ordered_drink):
+            input_coins(ordered_drink)
+            earnings += MENU[ordered_drink]['cost']
+
+    else:
+         print('Invalid input. Try again.')
