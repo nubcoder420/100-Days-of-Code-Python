@@ -68,6 +68,12 @@ while have_resources:
 
     ordered_drink = input('What would you like? (espresso/latte/cappuccino):\n').lower()
 
+    if ordered_drink == 'off':
+        exit()
+
+    elif ordered_drink == 'report':
+        pass
+
     total_money = insert_coin()  # total amount of coins inserted
     change = total_money - MENU[ordered_drink]['cost']  # change if there is any
 
@@ -99,8 +105,6 @@ while have_resources:
         remaining_coffee = resources['coffee'] - MENU['espresso']['ingredients']['coffee']
         resources['coffee'] = remaining_coffee
 
-    elif ordered_drink == 'report':
-        pass
 
     print(total_income)
     print(remaining_water)
