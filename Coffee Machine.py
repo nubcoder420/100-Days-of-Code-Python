@@ -24,10 +24,16 @@ MENU = {
     }
 }
 
+# resources = {
+#     "water": 300,
+#     "milk": 200,
+#     "coffee": 100,
+# }
+
 resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
+    "water": 3000,
+    "milk": 2000,
+    "coffee": 1000,
 }
 
 
@@ -67,18 +73,20 @@ def check_resources(drink):
 def input_coins(drink):
     print('Please insert coins.')
 
-    user_quarters = int(input('How many quarters?: '))
-    user_dimes = int(input('How many dimes?: '))
-    user_nickels = int(input('How many nickles?: '))
-    user_pennies = int(input('How many pennies?: '))
+    try:
+        user_quarters = int(input('How many quarters?: '))
+        user_dimes = int(input('How many dimes?: '))
+        user_nickels = int(input('How many nickles?: '))
+        user_pennies = int(input('How many pennies?: '))
 
-    total_input_coins = (user_quarters * QUARTERS) + (user_dimes * DIMES) + (user_nickels * NICKLES) + (user_pennies * PENNIES)
+        total_input_coins = (user_quarters * QUARTERS) + (user_dimes * DIMES) + (user_nickels * NICKLES) + (user_pennies * PENNIES)
 
-    change = total_input_coins - (MENU[drink]['cost'])
+        change = total_input_coins - (MENU[drink]['cost'])
 
-    print(f"Here is ${round(change, 2)} in change.")
-    print(f"Here is your {drink}. Enjoy!")
-
+        print(f"Here is ${round(change, 2)} in change.")
+        print(f"Here is your {drink}. Enjoy!")
+    except ValueError:
+        print('Invalid input.')
 
 
 while True:
