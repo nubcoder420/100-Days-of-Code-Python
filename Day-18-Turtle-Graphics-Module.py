@@ -5,7 +5,7 @@ import random
 pen1 = Turtle()
 # t.shape('turtle')
 # t.color('DarkRed')
-t.colomode(255)
+t.colormode(255)
 
 def draw_shape(no_of_sides):
 
