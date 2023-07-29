@@ -1,9 +1,11 @@
-from turtle import Turtle, Screen
+import turtle as t
+from turtle import Screen
 import random
 
-t = Turtle()
-t.shape('turtle')
-t.color('DarkRed')
+pen1 = Turtle()
+# t.shape('turtle')
+# t.color('DarkRed')
+t.colomode(255)
 
 def draw_shape(no_of_sides):
 
@@ -14,11 +16,12 @@ def draw_shape(no_of_sides):
         t.right(angle)
 
 def change_pen_color():
-    r = random.random()
-    g = random.random()
-    b = random.random()
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
 
-    t.color(r, g, b)
+    random_color = (r, g, b)
+    return random_color
 
 
 def challenge_1():
@@ -26,7 +29,7 @@ def challenge_1():
     for shape_sides in range(3, 11):
 
         draw_shape(shape_sides)
-        change_pen_color()
+        pen1.color(change_pen_color())
         shape_sides += 1
 
 def left_or_right():
@@ -35,9 +38,9 @@ def left_or_right():
     random_turn = random.choice(turn)
 
     if random_turn == 'left':
-        t.left(90)
+        pen1.left(90)
     else:
-        t.right(90)
+        pen1.right(90)
 
 def forward_or_backward(no_of_steps):
 
@@ -45,20 +48,21 @@ def forward_or_backward(no_of_steps):
     random_move = random.choice(move)
 
     if random_move == 'forward':
-        t.forward(no_of_steps)
+        pen1.forward(no_of_steps)
     else:
-        t.back(no_of_steps)
+        pen1.back(no_of_steps)
 
 
 def random_walk1(no_of_moves):
 
-    t.pensize(10)
-    t.speed(0)
+    pen1.pensize(10)
+    pen1.speed(0)
 
     for _ in range(no_of_moves):
+        pen1.color(change_pen_color())
         forward_or_backward(20)
         left_or_right()
-        change_pen_color()
+        
 
 def random_walk2(no_of_moves):
 
