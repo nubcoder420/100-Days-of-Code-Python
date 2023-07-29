@@ -82,7 +82,7 @@ pen2.speed(0)
 for _ in range(int(360 / 5)):
     pen2.color(change_pen_color())
     pen2.circle(100)
-    pen2.right(5)
+    pen2.setheading(pen2.heading() + 5)
 
 
 screen = Screen()
