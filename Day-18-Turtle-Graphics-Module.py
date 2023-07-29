@@ -12,8 +12,8 @@ def draw_shape(no_of_sides):
     angle = 360 / no_of_sides
 
     for _ in range(no_of_sides):
-        t.forward(100)
-        t.right(angle)
+        pen1.forward(100)
+        pen1.right(angle)
 
 def change_pen_color():
     r = random.randint(0, 255)
@@ -66,14 +66,23 @@ def random_walk1(no_of_moves):
 
 def random_walk2(no_of_moves):
 
-    t.pensize(10)
-    t.speed(0)
+    pen1.pensize(10)
+    pen1.speed(0)
     direction = [0, 90, 180, 270]
 
     for _ in range(no_of_moves):
-        t.forward(20)
-        t.setheading(random.choice(direction))
+        pen1.forward(20)
+        pen1.setheading(random.choice(direction))
         change_pen_color()
+
+### SPIROGRAPH ###
+pen2 = t.Turtle()
+pen2.speed(0)
+
+for _ in range(int(360 / 5)):
+    pen2.color(change_pen_color())
+    pen2.circle(100)
+    pen2.right(5)
 
 
 screen = Screen()
