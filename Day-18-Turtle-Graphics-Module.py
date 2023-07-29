@@ -79,10 +79,11 @@ def random_walk2(no_of_moves):
 pen2 = t.Turtle()
 pen2.speed(0)
 
-for _ in range(int(360 / 5)):
-    pen2.color(change_pen_color())
-    pen2.circle(100)
-    pen2.setheading(pen2.heading() + 5)
+def spirograph(size_of_gap):
+    for _ in range(int(360 / size_of_gap)):
+        pen2.color(change_pen_color())
+        pen2.circle(100)
+        pen2.setheading(pen2.heading() + size_of_gap)
 
 
 screen = Screen()
