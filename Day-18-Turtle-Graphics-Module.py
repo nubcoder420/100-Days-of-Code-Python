@@ -29,7 +29,48 @@ def challenge_1():
         change_pen_color()
         shape_sides += 1
 
-challenge_1()
+def left_or_right():
+
+    turn = ['left', 'right']
+    random_turn = random.choice(turn)
+
+    if random_turn == 'left':
+        t.left(90)
+    else:
+        t.right(90)
+
+def forward_or_backward(no_of_steps):
+
+    move = ['forward', 'backward']
+    random_move = random.choice(move)
+
+    if random_move == 'forward':
+        t.forward(no_of_steps)
+    else:
+        t.back(no_of_steps)
+
+
+def random_walk1(no_of_moves):
+
+    t.pensize(10)
+    t.speed(0)
+
+    for _ in range(no_of_moves):
+        forward_or_backward(20)
+        left_or_right()
+        change_pen_color()
+
+def random_walk2(no_of_moves):
+
+    t.pensize(10)
+    t.speed(0)
+    direction = [0, 90, 180, 270]
+
+    for _ in range(no_of_moves):
+        t.forward(20)
+        t.setheading(random.choice(direction))
+        change_pen_color()
+
 
 screen = Screen()
 screen.exitonclick()
