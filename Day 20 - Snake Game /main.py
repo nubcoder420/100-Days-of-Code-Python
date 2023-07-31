@@ -9,6 +9,7 @@ screen.title('Snake Game')
 screen.tracer(0)
 
 snake = Snake()
+food = Food()
 
 screen.listen()
 screen.onkeypress(snake.up, "w")
