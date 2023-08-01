@@ -15,6 +15,9 @@ class Scoreboard(Turtle):
         self.update_scoreboard()
 
     def update_scoreboard(self):
+        self.clear()
+        with open('data.txt', mode='r') as all_time_high:
+            highest_score = all_time_high.read()
         self.write(f'Score: {self.score}', align=ALIGNMENT, font=FONT)
 
     def add_score(self):
@@ -25,6 +28,8 @@ class Scoreboard(Turtle):
     def reset(self):
         if self.score > self.high_score:
             self.high_score = self.score
+            with open('data.txt', mode='w') as all_time_high:
+                all_time_high.write(f'{self.high_score}')
         self.score = 0
         self.update_scoreboard()
 
