@@ -43,11 +43,22 @@ data = pd.read_csv("weather_data.csv")
 # print(data[data.temp == data.temp.max()])
 
 # Challenge: convert Monday's temperature from C to F
-monday = data[data.day == "Monday"]
+# monday = data[data.day == "Monday"]
 
-def c_to_f(celsius):
-    return (celsius * (9/5)) + 32
+# def c_to_f(celsius):
+#     return (celsius * (9/5)) + 32
+#
+# print(c_to_f(monday.temp))
 
-print(c_to_f(monday.temp))
+
+### Creating a dataframe from scratch
+
+data_dict = {
+    "students" : ["Amy", "James", "Angela"],
+    "scores" : [76, 56, 65]
+}
+
+data2 = pd.DataFrame(data_dict)
+data2.to_csv("data2.csv")
 
 
