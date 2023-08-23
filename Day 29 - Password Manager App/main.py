@@ -39,21 +39,42 @@ def save():
         }
     }
 
-    if website == "" or username == "" or password == "":
+    if website == "" or username == "":
         messagebox.showerror(title="Oops!", message="Please don't leave any fields empty")
     else:
+        try:
+            with open("data.json", "r") as data_file:
+                #Reading old data
+                data = json.load(data_file)
+                #Update old data with new data
+                data.update(new_data)
+        except FileNotFoundError:
+            with open("data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
+            with open("data.json", "w") as data_file:
+                #Saving updated data
+                json.dump(data, data_file, indent=4)
+        finally:
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+
+
+# ------------------------- FIND PASSWORD ---------------------------- #
+def find_password():
+    website = website_entry.get()
+    try:
         with open("data.json", "r") as data_file:
-            #Reading old data
             data = json.load(data_file)
-            #Update old data with new data
-            data.update(new_data)
-
-        with open("data.json", "w") as data_file:
-            #Saving updated data
-            json.dump(data, data_file, indent=4)
-
-        website_entry.delete(0, END)
-        password_entry.delete(0, END)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error", message="No Data File Found")
+    else:
+        if website in data:
+            messagebox.showinfo(title="Match Found", message=f"Website: {website}\n"
+                                                             f"Username/Email: {data[website]['email']}\n"
+                                                             f"Password: {data[website]['password']}")
+        else:
+            messagebox.showerror(title="Error", message=f"No matches for '{website}' found")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -70,8 +91,8 @@ canvas.grid(row=1, column=1)
 website_label = Label(text="Website:")
 website_label.grid(row=2, column=0)
 
-website_entry = Entry(width=55)
-website_entry.grid(row=2, column=1, columnspan=2)
+website_entry = Entry(width=36)
+website_entry.grid(row=2, column=1)
 website_entry.focus()
 
 username_label = Label(text="Email/Username:")
@@ -92,5 +113,8 @@ generate_button.grid(row=4, column=2)
 
 add_button = Button(text="Add", width=47, command=save)
 add_button.grid(row=5, column=1, columnspan=2)
+
+search_button = Button(text="Search", width=15, command=find_password)
+search_button.grid(row=2, column=2)
 
 window.mainloop()
