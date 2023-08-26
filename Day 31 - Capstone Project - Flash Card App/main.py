@@ -1,13 +1,21 @@
 from tkinter import *
+
+import pandas
 import pandas as pd
 import random
 
 BACKGROUND_COLOR = "#B1DDC6"
 random_french_word = {}
-#----------------------- DATA SETUP ------------------------#
+data_dict = {}
 
-data = pd.read_csv("data/french_words.csv")
-data_dict = data.to_dict(orient="records")
+#----------------------- DATA SETUP ------------------------#
+try:
+    data = pd.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pd.read_csv("data/french_words.csv")
+    data_dict = original_data.to_dict(orient="records")
+else:
+    data_dict = data.to_dict(orient="records")
 
 #----------------------- FUNCTIONS ------------------------#
 
@@ -25,6 +33,13 @@ def flip_card():
     canvas.itemconfig(card_title, text="English", fill="white")
     canvas.itemconfig(card_word, text=random_french_word["English"], fill="white")
     canvas.itemconfig(canvas_image, image=back_img)
+
+
+def is_known():
+    data_dict.remove(random_french_word)
+    data = pandas.DataFrame(data_dict)
+    data.to_csv("data/words_to_learn.csv", index=False)
+    generate_french_word()
 
 #----------------------- UI SETUP ------------------------#
 
@@ -48,7 +63,7 @@ x_button = Button(image=x_img, highlightthickness=0, command=generate_french_wor
 x_button.grid(row=1, column=0)
 
 check_img = PhotoImage(file="./images/right.png")
-check_button = Button(image=check_img, highlightthickness=0, command=generate_french_word)
+check_button = Button(image=check_img, highlightthickness=0, command=is_known)
 check_button.grid(row=1, column=1)
 
 generate_french_word()
