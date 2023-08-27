@@ -34,3 +34,35 @@ month = now.month
 day_of_week = now.weekday()
 
 date_of_birth = dt.datetime(year=1986, month=3, day=12, hour=2)
+
+
+#---------------------- CHALLENGE EXERCISE --------------------------#
+
+import smtplib
+import datetime as dt
+import random
+
+sender = "sender@email.com"
+sender_password = "password"
+recipient = "recipient@email.com"
+
+
+with open("quotes.txt") as data_file:
+    quote_list = data_file.readlines()
+    random_quote = random.choice(quote_list)
+    # print(random_quote)
+
+now = dt.datetime.now()
+day_of_week = now.weekday()
+
+
+with smtplib.SMTP("smtp.gmail.com") as connection:
+    connection.starttls()
+    connection.login(user=sender, password=sender_password)
+
+    if day_of_week == 6:
+        connection.sendmail(
+            from_addr=sender,
+            to_addrs=recipient,
+            msg=f"Subject: Motivational Quote\n\n{random_quote}"
+        )
