@@ -1,0 +1,24 @@
+
+#--------------------- LESSON : SMTP MODULE ------------------------#
+
+import smtplib
+
+my_email = "username@email.com"
+password = "password"
+recipient = "username@email.com"
+
+# Setup SMTP
+with smtplib.SMTP("smtp.gmail.com") as connection:
+
+    # Make the connection secure
+    connection.starttls()
+
+    # login
+    connection.login(user=my_email, password=password)
+
+    # send email
+    connection.sendmail(
+        from_addr=my_email,
+        to_addrs=recipient,
+        msg="Subject: Hello\n\nThis is the body of my email"
+    )
