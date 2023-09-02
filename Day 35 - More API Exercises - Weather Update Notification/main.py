@@ -6,7 +6,7 @@ MNL_LAT = 14.599512 # Latitude
 MNL_LONG = 120.984222 # Longitude
 
 OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather"
-API_KEY = "f267308ff46cd7107ad413fa6604bc66"
+API_KEY = "your API KEY here"
 
 my_email = "user@email.com" # Enter your email here
 password = "password" # your password
