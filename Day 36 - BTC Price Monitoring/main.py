@@ -80,7 +80,7 @@ if percentage_difference > PERCENT_DIFFERENCE:
 
     sources, titles, descriptions, urls = get_news()
 
-    email_message = f"Subject: BTC Price Monitoring: {percentage_difference}\n\n" \
+    email_message = f"Subject: BTC Price Monitoring: {percentage_difference}%\n\n" \
                     f"Article 1:\n" \
                     f"  Title: {titles[0]}\n" \
                     f"  Description: {descriptions[0]}\n" \
