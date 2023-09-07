@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-APP_ID = "838786d1"
+APP_ID = "YOUR ID HERE"
 API_KEY = "YOUR API KEY HERE"
 SHEETY_TOKEN = "YOUR TOKEN HERE"
 
