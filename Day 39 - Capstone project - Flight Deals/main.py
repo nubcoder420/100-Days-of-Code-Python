@@ -1,14 +1,16 @@
 from pprint import pprint
 from data_manager import DataManager
 from flight_search import FlightSearch
+from notification_manager import NotificationManager
 from datetime import datetime, timedelta
 
 data_manager = DataManager()
-sheet_data = data_manager.get_destination_data()
 flight_search = FlightSearch()
+notification_manager = NotificationManager()
 # pprint(sheet_data)
+sheet_data = data_manager.get_destination_data()
 
-ORIGIN_CITY_IATA = "MNL"
+ORIGIN_CITY_IATA = "LON"
 
 
 if sheet_data[0]["iataCode"] == "":
@@ -32,3 +34,10 @@ for destination in sheet_data:
         from_time=tomorrow,
         to_time=six_months_from_today
     )
+
+    if flight.price < destination["lowestPrice"]:
+        notification_manager.send_message(
+            email_message=f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} "
+                          f"to {flight.destination_city}-{flight.destination_airport}, "
+                          f"from {flight.out_date} to {flight.return_date}."
+        )
