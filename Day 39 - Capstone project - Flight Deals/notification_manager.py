@@ -1,8 +1,8 @@
 import smtplib
 from email.mime.text import MIMEText
 
-EMAIL = "nubcoder420@gmail.com"
-PASSWORD = "jubfnlbhyvtirtym"
+EMAIL = "YOUR EMAIL HERE"
+PASSWORD = "YOUR PASSWORD HERE"
 
 class NotificationManager:
     #This class is responsible for sending notifications with the deal flight details.
