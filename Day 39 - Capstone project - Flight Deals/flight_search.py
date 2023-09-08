@@ -1,7 +1,7 @@
 import requests
 from flight_data import FlightData
 
-TEQUILA_API_KEY = "as32v1xqg1VgArbsJmENxynr61knpNUf"
+TEQUILA_API_KEY = "YOUR KEY HERE"
 TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com"
 
 header = {
