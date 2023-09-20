@@ -1,1 +1,83 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+#------------- Browser stays open -------------#
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+chrome_options.add_experimental_option("detach", True)
+#-----------------------------------------------#
+
+
+driver = webdriver.Chrome(options=chrome_options)
+
+#---------- Challenge 1 ------------#
+# driver.get(url="https://www.amazon.com/dp/B08CFZF16Y/ref=sbl_dpx_kitchen-electric-cookware_B08CFZF16Y_0?th=1")
+# price_element = driver.find_element(By.XPATH, "//span[@class='a-price aok-align-center']")
+# price_text = price_element.find_element(By.CSS_SELECTOR, "span.a-price-whole").text + "." + \
+#              price_element.find_element(By.CSS_SELECTOR, "span.a-price-fraction").text
+#
+# print(price_text)
+
+
+#-------------- Challenge 2 ---------------#
+# driver.get(url="https://www.python.org/")
+#
+# # event_schedule = driver.find_element(By.XPATH, '//*[@id="content"]/div/section/div[2]/div[2]/div/ul')
+# # print(event_schedule.text)
+#
+# event_times = driver.find_elements(By.CSS_SELECTOR, ".event-widget time")
+# event_names = driver.find_elements(By.CSS_SELECTOR, ".event-widget li a")
+#
+# event_dates = [time.text for time in event_times]
+# events_list = [name.text for name in event_names]
+#
+# # print(event_dates)
+# # print(events_list)
+#
+# python_events = {index: {"date": date, "event": event} for index, (date, event) in enumerate(zip(event_dates, events_list))}
+# print(python_events)
+
+
+#-------------- Challenge 3 ---------------#
+
+# driver.get(url="https://en.wikipedia.org/wiki/Main_Page")
+#
+# result = driver.find_element(By.ID, "articlecount").find_element(By.CSS_SELECTOR, "a")
+# result2 = driver.find_element(By.CSS_SELECTOR, "#articlecount a")
+#
+# print(result.text)
+# print(result2.text)
+#
+# #------------------ open a link by clicking ----------------#
+# community_portal = driver.find_element(By.LINK_TEXT, "Community portal")
+# # community_portal.click()
+#
+#
+# #------------------ type an entry ---------------------#
+# search = driver.find_element(By.NAME, "search")
+# search.send_keys("python programming language")
+# search.send_keys(Keys.ENTER)
+
+
+#--------------------- Challenge 4 ---------------------#
+
+driver.get(url="http://secure-retreat-92358.herokuapp.com/")
+
+first_name = driver.find_element(By.NAME, "fName")
+last_name = driver.find_element(By.NAME, "lName")
+email = driver.find_element(By.NAME, "email")
+submit_button = driver.find_element(By.CSS_SELECTOR, "button")
+
+first_name.send_keys("nub")
+last_name.send_keys("coder")
+email.send_keys("420@email.com")
+submit_button.click()
+
+
+
+# driver.quit()
+
+
 
