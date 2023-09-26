@@ -46,7 +46,7 @@ links = soup.find_all('a', {'data-test': 'property-card-link'})
 
 price_list = [price.get_text() for price in prices]
 address_list = [address.get_text() for address in addresses]
-link_list = [link['href'] for link in links]
+link_list = [link.get('href') for link in links]
 
 print(price_list)
 print(address_list)
