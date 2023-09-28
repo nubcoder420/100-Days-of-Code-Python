@@ -10,9 +10,11 @@ py -3 -m venv .venv
 
 #Install Flask
 pip install Flask
+'''
 
 
 #----- Flask Quickstart -----#
+#hello.py
 
 from flask import Flask
 
@@ -21,3 +23,20 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
   return "<p>Hello, World!</p>"
+
+#----- Run Flask Server -----#
+#use terminal
+python -m flask --app hello.py run
+
+#or
+if __name__ == "__main__":
+    app.run()
+
+
+#----- Python Decorators -----#
+
+def decorator_function(function):
+    def wrapper_function():
+        function()
+    return wrapper_function
+
