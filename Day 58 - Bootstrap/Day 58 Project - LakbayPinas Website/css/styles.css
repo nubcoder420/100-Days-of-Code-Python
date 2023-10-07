@@ -8,6 +8,17 @@ h1 {
     line-height: 1.5;
     font-weight: 900;
 }
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+p {
+    color: #8f8f8f
+}
+
 #title {
     background-color: #3EC1D3;
     font-family: 'Montserrat', sans-serif;
@@ -53,5 +64,25 @@ h1 {
 /* .title-image {
     width: 90%;
 } */
+
+
+/* Features Section*/
+#features {
+    padding: 10% 17%;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 5%;
+}
+
+.icon {
+    color: #4cd5e7;
+    margin-bottom: 1.5rem;
+}
+
+.icon:hover {
+    color: #3EC1D3;
+}
 
 
