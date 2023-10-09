@@ -67,11 +67,6 @@ p {
     margin: 5% 3% 7% 0;
 }
 
-/* Title image */
-/* .title-image {
-    width: 90%;
-} */
-
 
 /* Features Section*/
 #features {
@@ -121,6 +116,58 @@ p {
     margin: 20px 20px 20px;
 }
 
+/* Pricing Section */
+.price-cards {
+    padding: 8% 15%;
+}
 
+#pricing {
+    text-align: center;
+}
 
+.pricing-text {
+    padding: 8% 0% 0%;
+}
 
+/* Call to Action Section */
+
+#cta {
+    background-color: #3EC1D3;
+    color: #fff;
+    text-align: center;
+}
+
+.cta-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.75rem;
+    line-height: 1.5;
+    font-weight: 900;
+    padding: 8% 15% 0%;
+}
+
+.cta-btn {
+    padding: 0 0 3%;
+}
+
+/* Footer Section */
+
+#footer {
+    padding: 4% 0 2%;
+    text-align: center;
+}
+
+.footer-icons {
+    padding: 0% 1%;
+}
+
+#footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Media Queries Section */
+@media (max-width: 1000px) {
+    #title {
+        text-align: center;
+    }
+}
