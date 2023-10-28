@@ -1,0 +1,6 @@
+Day 68 of #100DaysOfCode
+
+Lessons:
+- Authentication with Flask
+- Encryption and Hashing 101
+- Salting Passwords and Salt Rounds
