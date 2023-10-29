@@ -1,0 +1,6 @@
+Day 69 of #100DaysOfCode
+
+Blog Capstone Project Part 4
+
+Lessons:
+- Adding Users
