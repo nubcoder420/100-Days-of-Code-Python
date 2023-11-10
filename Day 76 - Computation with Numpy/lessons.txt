@@ -1,0 +1,6 @@
+Day 76 of #100DaysOfCode
+
+Computation with Numpy
+
+Lessons:
+- 
